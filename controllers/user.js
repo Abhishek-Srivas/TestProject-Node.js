@@ -44,10 +44,11 @@ exports.getInfo = (req, res, next) => {
 
 exports.search = (req, res, next) => {
   const { searchQuery } = req.params;
+  console.log(searchQuery)
   User.find({
     $or: [
-      { name: { $regex: `${searchQuery}`, $options: "ix" } },
-      { location: { $regex: `${searchQuery}`, $options: "ix" } },
+      { name: { $regex: `${searchQuery}`, $options: 'i' } },
+      { location: { $regex: `${searchQuery}`, $options: 'ix' } },
     ],
   })
     .sort({ name: 1 })
